@@ -11,7 +11,7 @@ class Vehicle {
         string licensePlate; //biển số xe để phân biệt các xe cùng loại với nhau. Ví dụ cách nhập biển số xe: 51C-12345, 59A-67890,...
         int monthsInCompany; //thời gian xe hoạt động trong công ty tính theo tháng
         string managerName;
-        bool maintenanceStatus; //trạng thái bảo trì: true = chưa đến thời gian bảo trì, vẫn sử dụng được; false = hiện đang trong thời gian bảo trì, không thể sử dụng xe này.
+        bool maintenanceStatus; //trạng thái bảo trì: false = chưa đến thời gian bảo trì, vẫn sử dụng được; true = hiện đang trong thời gian bảo trì, không thể sử dụng xe này.
     public:
         Vehicle() {}; //constructor mặc định, thêm vào để tránh lỗi khi khai báo mảng đối tượng
         //constructor có tham số để khởi tạo đối tượng với các thuộc tính cụ thể
@@ -71,7 +71,7 @@ class Vehicle {
             cout << ", co mau " << color;
             cout << ", hoat dong trong cong ty duoc " << monthsInCompany << " thang";
             cout << ", thuoc quan ly cua " << managerName;
-            cout << (maintenanceStatus ? ", chua den thoi gian bao tri, van su dung duoc." : ", hien dang trong thoi gian bao tri, khong the su dung xe nay.") << endl;
+            cout << (maintenanceStatus ? ", hien dang trong thoi gian bao tri, khong the su dung xe nay." : ", chua den thoi gian bao tri, van su dung duoc.") << endl;
         } 
 
         void accelerate() {
@@ -80,9 +80,8 @@ class Vehicle {
 
         void input(int index) {
             cout << "Nhap thong tin xe thu " << index+1 << endl;
-            cin >> ws;
-            cout << "Loai xe: "; getline(cin, type);
-            cout << "Hang xe: "; getline(cin, brand);
+            cout << "Loai xe: "; cin >> ws; getline(cin, type);
+            cout << "Hang xe: "; cin >> ws; getline(cin, brand);
             cout << "Nam san xuat: "; cin >> year;
             cout << "Toc do toi da: "; cin >> maxSpeed;
             cout << "Mau sac: "; cin >> ws; getline(cin, color);
@@ -97,22 +96,25 @@ class Vehicle {
 
 
 int main() {
-    cout<<"Ban muon tu nhap thong tin hay su dung thong tin co san? (0: tu nhap, 1: su dung thong tin co san) ";
     bool availableData;
+    cout<<"Chao mung ban den voi he thong quan ly xe cua cong ty!"<<endl;
+    cout<<"Ban co hai lua chon"<<endl;
+    cout<< "0: Tu nhap thong tin xe"<<endl;
+    cout<< "1: Su dung thong tin xe co san"<<endl;
+    cout<<"Lua chon cua ban: ";
     cin>>availableData;
     cout<<endl;
     if (availableData) {
-        Vehicle car("Car", "Toyota", 2020, 200, "Do", "51A-12345", 24, "Nguyen Van A", true);
-        Vehicle truck("Truck", "Hino", 2018, 150, "Trang", "51C-67890", 36, "Nguyen Van B", false);
-        Vehicle motorcycle("Motorcycle", "Honda", 2021, 180, "Den", "59A-24680", 12, "Nguyen Van C", true);
+        Vehicle car("oto", "Toyota", 2020, 120, "Do", "51A-12345", 24, "Le Van Viet", true);
+        Vehicle truck("xe tai", "Hino", 2018, 100, "Trang", "51C-67890", 36, "Hoang Dieu", false);
+        Vehicle motorcycle("xe may", "Honda", 2021, 90, "Den", "59A-24680", 12, "Vo Van Ngan", true);
 
         car.displayInfo();
-        car.accelerate();
-        cout<<endl;
         truck.displayInfo();
-        truck.accelerate();
-        cout<<endl;
         motorcycle.displayInfo();
+        cout<<endl;
+        car.accelerate();
+        truck.accelerate();
         motorcycle.accelerate();
 
         return 0;
@@ -125,7 +127,9 @@ int main() {
    for (int i=0; i<n; i++) {
         vehicles[i].input(i);
     }
-
+    
+    cout<<endl;
+    cout<<"Thong tin chi tiet cac xe trong cong ty:"<<endl;
     for (int i=0; i<n; i++) {
         cout<<"Thong tin xe thu "<<i+1<<":"<<endl;
         vehicles[i].displayInfo();
@@ -143,5 +147,5 @@ int main() {
     - Các hãng xe có thể là: Toyota, Ford, Honda, Yamaha, Hino, Thaco,...
     - Màu sắc có thể là: do, xanh, vang, trang, den,...
     - Biển số xe: nhập theo định dạng 51C-12345, 59A-67890,... với 2 chữ số đầu là mã tỉnh, tiếp theo là chữ cái và 5 chữ số cuối
-    - Trạng thái bảo trì: nhập 1 nếu bạn muốn xe sử dụng được và 0 thì ngược lại
+    - Trạng thái bảo trì: nhập 0 nếu xe vẫn hoạt động được và 1 nếu xe đang trong thời gian bảo trì
 */
