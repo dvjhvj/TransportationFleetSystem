@@ -19,7 +19,7 @@ class Vehicle {
             this->type = type;
             this->brand = brand;
             this->year = year;
-            this->maxSpeed = maxSpeed;
+            this->maxSpeed = (maxSpeed < 0 ? 0 : maxSpeed); //nếu tốc độ nhập vào là số âm thì gán tốc độ = 0
             this->color = color;
             this->licensePlate = licensePlate;
             this->monthsInCompany = monthsInCompany;
@@ -27,8 +27,8 @@ class Vehicle {
             this->maintenanceStatus = maintenanceStatus;
         }
 
-        string getTypes() { return type; }
-        void setTypes(string t) { type = t; }
+        string getType() { return type; }
+        void setType(string t) { type = t; }
 
         string getBrand() { return brand; }
         void setBrand(string b) { brand = b; }
@@ -37,7 +37,14 @@ class Vehicle {
         void setYear(int y) { year = y; }     
 
         int getMaxSpeed() { return maxSpeed; }
-        void setMaxSpeed(int ms) { maxSpeed = ms; }
+        void setMaxSpeed(int ms) { //phòng trường hợp gọi riêng hàm setMaxSpeed với tham số là số âm
+            if (ms < 0) {
+                maxSpeed = 0;
+                cout << "Toc do toi da khong the la so am, chuyen lai thanh 0 km/h" << endl;
+            } else {
+                maxSpeed = ms;
+            }
+        }
 
         string getColor() { return color; }
         void setColor(string c) { color = c; }  
@@ -73,17 +80,13 @@ class Vehicle {
 
 
 };
-
-int main() {
-    const int N=100;
-    Vehicle vehicles[N];
-    int n;
-    cout<<"He thong cong ty gom bao nhieu xe? "; cin>>n;
-    for (int i=0; i<n; i++) {
+    // Hàm nhập thông tin xe từ người dùng. Đưa hàm ra ngoài mục đích giảm độ phức tạp của hàm main, có thể tái sử dụng hàm này nếu cần. 
+    // Đặt hàm này bên ngoài class vì đưa vào sẽ làm class bị rối, không cần thiết
+    Vehicle inputVehicle(int index) {
         string type, brand, color, managerName, licensePlate;
         int year, maxSpeed, monthsInCompany;
         bool maintenanceStatus;
-        cout<<"Nhap thong tin xe thu "<<i+1<<":"<<endl;
+        cout<<"Nhap thong tin xe thu "<<index+1<<":"<<endl;
         cin>>ws; //bỏ hết ký tự trắng còn thừa trong bộ đệm. Tiện hơn khi dùng cin.ignore() khi chỉ xóa được một ký tự trắng
         cout<<"Loai xe: "; getline(cin, type);
         cout<<"Hang xe: "; getline(cin, brand);
@@ -94,12 +97,43 @@ int main() {
         cout<<"So thang trong cong ty: "; cin>>monthsInCompany;
         cout<<"Ten nguoi quan ly: "; cin>>ws; getline(cin, managerName); 
         cout<<"Trang thai bao tri: "; cin>>maintenanceStatus;
-        vehicles[i] = Vehicle(type, brand, year, maxSpeed, color,licensePlate, monthsInCompany, managerName, maintenanceStatus);
+        return Vehicle(type, brand, year, maxSpeed, color,licensePlate, monthsInCompany, managerName, maintenanceStatus);
+}
+
+int main() {
+    cout<<"Ban muon tu nhap thong tin hay su dung thong tin co san? (0: tu nhap, 1: su dung thong tin co san) ";
+    bool availableData;
+    cin>>availableData;
+    cout<<endl;
+    if (availableData) {
+        Vehicle car("Car", "Toyota", 2020, 200, "Do", "51A-12345", 24, "Nguyen Van A", true);
+        Vehicle truck("Truck", "Hino", 2018, 150, "Trang", "51C-67890", 36, "Nguyen Van B", false);
+        Vehicle motorcycle("Motorcycle", "Honda", 2021, 180, "Den", "59A-24680", 12, "Nguyen Van C", true);
+
+        car.displayInfo();
+        car.accelerate();
+        cout<<endl;
+        truck.displayInfo();
+        truck.accelerate();
+        cout<<endl;
+        motorcycle.displayInfo();
+        motorcycle.accelerate();
+
+        return 0;
+
+    }
+    const int N=100;
+    Vehicle vehicles[N];
+    int n;
+    cout<<"He thong cong ty gom bao nhieu xe? "; cin>>n;
+   for (int i=0; i<n; i++) {
+        vehicles[i] = inputVehicle(i);
     }
 
     for (int i=0; i<n; i++) {
         cout<<"Thong tin xe thu "<<i+1<<":"<<endl;
         vehicles[i].displayInfo();
+        cout<<endl;
     }
 
     for (int i=0; i<n; i++) {
