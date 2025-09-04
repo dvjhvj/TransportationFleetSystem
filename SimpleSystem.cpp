@@ -78,27 +78,23 @@ class Vehicle {
             cout << "Xe " << type << " co bien so " << licensePlate << " dang tang toc len " << maxSpeed << " km/h" << endl;
         }
 
+        void input(int index) {
+            cout << "Nhap thong tin xe thu " << index+1 << endl;
+            cin >> ws;
+            cout << "Loai xe: "; getline(cin, type);
+            cout << "Hang xe: "; getline(cin, brand);
+            cout << "Nam san xuat: "; cin >> year;
+            cout << "Toc do toi da: "; cin >> maxSpeed;
+            cout << "Mau sac: "; cin >> ws; getline(cin, color);
+            cout << "Bien so xe: "; cin >> ws; getline(cin, licensePlate);
+            cout << "So thang trong cong ty: "; cin >> monthsInCompany;
+            cout << "Ten nguoi quan ly: "; cin >> ws; getline(cin, managerName);
+            cout << "Trang thai bao tri: "; cin >> maintenanceStatus;
+        }
+
 
 };
-    // Hàm nhập thông tin xe từ người dùng. Đưa hàm ra ngoài mục đích giảm độ phức tạp của hàm main, có thể tái sử dụng hàm này nếu cần. 
-    // Đặt hàm này bên ngoài class vì đưa vào sẽ làm class bị rối, không cần thiết
-    Vehicle inputVehicle(int index) {
-        string type, brand, color, managerName, licensePlate;
-        int year, maxSpeed, monthsInCompany;
-        bool maintenanceStatus;
-        cout<<"Nhap thong tin xe thu "<<index+1<<":"<<endl;
-        cin>>ws; //bỏ hết ký tự trắng còn thừa trong bộ đệm. Tiện hơn khi dùng cin.ignore() khi chỉ xóa được một ký tự trắng
-        cout<<"Loai xe: "; getline(cin, type);
-        cout<<"Hang xe: "; getline(cin, brand);
-        cout<<"Nam san xuat: "; cin>>year;
-        cout<<"Toc do toi da: "; cin>>maxSpeed;
-        cout<<"Mau sac: "; cin>>ws; getline(cin, color);
-        cout<<"Bien so xe: "; cin>>ws; getline(cin, licensePlate);
-        cout<<"So thang trong cong ty: "; cin>>monthsInCompany;
-        cout<<"Ten nguoi quan ly: "; cin>>ws; getline(cin, managerName); 
-        cout<<"Trang thai bao tri: "; cin>>maintenanceStatus;
-        return Vehicle(type, brand, year, maxSpeed, color,licensePlate, monthsInCompany, managerName, maintenanceStatus);
-}
+
 
 int main() {
     cout<<"Ban muon tu nhap thong tin hay su dung thong tin co san? (0: tu nhap, 1: su dung thong tin co san) ";
@@ -127,7 +123,7 @@ int main() {
     int n;
     cout<<"He thong cong ty gom bao nhieu xe? "; cin>>n;
    for (int i=0; i<n; i++) {
-        vehicles[i] = inputVehicle(i);
+        vehicles[i].input(i);
     }
 
     for (int i=0; i<n; i++) {
