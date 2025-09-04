@@ -12,10 +12,11 @@ class Vehicle {
         int monthsInCompany; //thời gian xe hoạt động trong công ty tính theo tháng
         string managerName;
         bool maintenanceStatus; //trạng thái bảo trì: false = chưa đến thời gian bảo trì, vẫn sử dụng được; true = hiện đang trong thời gian bảo trì, không thể sử dụng xe này.
+        string fuelType; //loại nhiên liệu sử dụng cho xe (xăng, dầu, điện)
     public:
         Vehicle() {}; //constructor mặc định, thêm vào để tránh lỗi khi khai báo mảng đối tượng
         //constructor có tham số để khởi tạo đối tượng với các thuộc tính cụ thể
-        Vehicle(string type, string brand, int year, int maxSpeed, string color, string licensePlate, int monthsInCompany, string managerName, bool maintenanceStatus) {
+        Vehicle(string type, string brand, int year, int maxSpeed, string color, string licensePlate, int monthsInCompany, string managerName, bool maintenanceStatus, string fuelType) {
             this->type = type;
             this->brand = brand;
             this->year = year;
@@ -25,6 +26,7 @@ class Vehicle {
             this->monthsInCompany = monthsInCompany;
             this->managerName = managerName;
             this->maintenanceStatus = maintenanceStatus;
+            this->fuelType = fuelType;
         }
 
         string getType() { return type; }
@@ -61,6 +63,9 @@ class Vehicle {
         bool getMaintenanceStatus() { return maintenanceStatus; }
         void setMaintenanceStatus(bool ms) { maintenanceStatus = ms; }
 
+        string getFuelType() { return fuelType; }
+        void setFuelType(string ft) { fuelType = ft; }
+
 
         void displayInfo() {
             cout << type;
@@ -75,7 +80,7 @@ class Vehicle {
         } 
 
         void accelerate() {
-            cout << "Xe " << type << " co bien so " << licensePlate << " dang tang toc len " << maxSpeed << " km/h" << endl;
+            cout << type << " co bien so " << licensePlate << " dang tang toc len " << maxSpeed << " km/h" << endl;
         }
 
         void input(int index) {
@@ -89,6 +94,7 @@ class Vehicle {
             cout << "So thang trong cong ty: "; cin >> monthsInCompany;
             cout << "Ten nguoi quan ly: "; cin >> ws; getline(cin, managerName);
             cout << "Trang thai bao tri: "; cin >> maintenanceStatus;
+            cout << "Loai nhien lieu su dung: "; cin >> ws; getline(cin, fuelType);
         }
 
 
@@ -105,9 +111,9 @@ int main() {
     cin>>availableData;
     cout<<endl;
     if (availableData) {
-        Vehicle car("oto", "Toyota", 2020, 120, "Do", "51A-12345", 24, "Le Van Viet", true);
-        Vehicle truck("xe tai", "Hino", 2018, 100, "Trang", "51C-67890", 36, "Hoang Dieu", false);
-        Vehicle motorcycle("xe may", "Honda", 2021, 90, "Den", "59A-24680", 12, "Vo Van Ngan", true);
+        Vehicle car("oto", "Toyota", 2020, 120, "Do", "51A-12345", 24, "Le Van Viet", true, "xang");
+        Vehicle truck("xe tai", "Hino", 2018, 100, "Trang", "51C-67890", 36, "Hoang Dieu", false, "dau");
+        Vehicle motorcycle("xe may", "VinFast", 2024, 90, "Xanh", "59A-24680", 5, "Vo Van Ngan", false, "dien");
 
         car.displayInfo();
         truck.displayInfo();
@@ -127,7 +133,7 @@ int main() {
    for (int i=0; i<n; i++) {
         vehicles[i].input(i);
     }
-    
+
     cout<<endl;
     cout<<"Thong tin chi tiet cac xe trong cong ty:"<<endl;
     for (int i=0; i<n; i++) {
