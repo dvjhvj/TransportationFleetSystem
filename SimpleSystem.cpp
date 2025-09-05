@@ -97,6 +97,15 @@ class Vehicle {
             cout << "Loai nhien lieu su dung: "; cin >> ws; getline(cin, fuelType);
         }
 
+        //Đánh giá tình trạng xe dựa trên năm hiện tại với năm ra đời
+        string evaluateCondition(int currentYear) {
+            int age = currentYear - year;
+            if (age > 10) return "Cu, can thay doi som";
+            else if (age > 5) return "Trung binh, su dung duoc";
+            else return "Moi, tot";
+    }
+
+
 
 };
 
@@ -111,9 +120,9 @@ int main() {
     cin>>availableData;
     cout<<endl;
     if (availableData) {
-        Vehicle car("oto", "Toyota", 2020, 120, "Do", "51A-12345", 24, "Le Van Viet", true, "xang");
-        Vehicle truck("xe tai", "Hino", 2018, 100, "Trang", "51C-67890", 36, "Hoang Dieu", false, "dau");
-        Vehicle motorcycle("xe may", "VinFast", 2024, 90, "Xanh", "59A-24680", 5, "Vo Van Ngan", false, "dien");
+        Vehicle car("Oto", "Toyota", 2020, 120, "Do", "51A-12345", 24, "Le Van Viet", true, "xang");
+        Vehicle truck("Xe tai", "Hino", 2018, 100, "Trang", "51C-67890", 36, "Hoang Dieu", false, "dau");
+        Vehicle motorcycle("Xe may", "VinFast", 2024, 90, "Xanh", "59A-24680", 5, "Pham Nhat Vuong", false, "dien");
 
         car.displayInfo();
         truck.displayInfo();
@@ -122,6 +131,11 @@ int main() {
         car.accelerate();
         truck.accelerate();
         motorcycle.accelerate();
+        cout<<endl;
+
+        cout<<"Tinh trang cua "<<car.getType()<<" co bien so "<<car.getLicensePlate()<<": "<<car.evaluateCondition(2025)<<endl;
+        cout<<"Tinh trang cua "<<truck.getType()<<" co bien so "<<truck.getLicensePlate()<<": "<<truck.evaluateCondition(2025)<<endl;
+        cout<<"Tinh trang cua "<<motorcycle.getType()<<" co bien so "<<motorcycle.getLicensePlate()<<": "<<motorcycle.evaluateCondition(2025)<<endl;
 
         return 0;
 
@@ -132,6 +146,7 @@ int main() {
     cout<<"He thong cong ty gom bao nhieu xe? "; cin>>n;
    for (int i=0; i<n; i++) {
         vehicles[i].input(i);
+        cout<<endl;
     }
 
     cout<<endl;
@@ -144,6 +159,10 @@ int main() {
 
     for (int i=0; i<n; i++) {
         vehicles[i].accelerate();
+    }
+
+    for (int i=0; i<n; i++) {
+        cout<<"Tinh trang cua "<<vehicles[i].getType()<<" co bien so "<<vehicles[i].getLicensePlate()<<": "<<vehicles[i].evaluateCondition(2025)<<endl;
     }
 
     return 0;
