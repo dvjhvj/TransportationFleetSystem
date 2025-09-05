@@ -105,11 +105,7 @@ class Vehicle {
             else if (age > 5) return "Trung binh, su dung duoc";
             else return "Moi, tot";
     }
-
-
-
 };
-
 
 int main() {
     bool availableData;
@@ -139,13 +135,13 @@ int main() {
         cout<<"Tinh trang cua "<<motorcycle.getType()<<" co bien so "<<motorcycle.getLicensePlate()<<": "<<motorcycle.evaluateCondition(2025)<<endl;
 
         return 0;
-
     }
+
     const int N=100;
     Vehicle vehicles[N];
     int n;
     cout<<"He thong cong ty gom bao nhieu xe? "; cin>>n;
-   for (int i=0; i<n; i++) {
+    for (int i=0; i<n; i++) {
         vehicles[i].input(i);
         cout<<endl;
     }
