@@ -22,7 +22,11 @@
   
 ## Thực hành
 - Khi phân tích yêu cầu, mình nhận ra tâm điểm chính là **xe**. Từ đó, liệt kê các đặc điểm quan trọng (loại, hãng, tốc độ, biển số, …) thành thuộc tính và các hành vi (tăng tốc, hiển thị, đánh giá tình trạng) thành phương thức.  
-- Nhiều khó khăn xuất hiện trong bài tập lần này. Đầu tiên, mình muốn tạo input được nhập từ bàn phím nhưng lại không biết là có mảng nào mà phần tử là __Class__ không? Và để giải quyết vấn đề đó, mình đã hỏi người bạn của mình, __ChatGPT__. Sau khi có được câu trả lời thì mình đã hiểu và biết thêm một phần kiến thức. Thứ hai, có quá nhiều thuộc tính để lựa chọn và không biết nên thêm nên bỏ cái nào và cách đặt tên của nó như thế nào cho hợp lý. Và thứ ba là việc các yêu cầu của bài tập lần này như về cách đặt tên theo __Camel Case__, hay đầy đủ một vài thuộc tính và phương thức bắt buộc cũng như các input một cách gọn gàng khi các phần tử là một class. Mọi khó khăn gặp phải mình đều trao đổi với __ChatGPT__ kết hợp một vài thông tin tìm kiếm trên mạng xã hội.  
+- Nhiều khó khăn xuất hiện trong bài tập lần này:
+   - Đầu tiên, mình muốn tạo input được nhập từ bàn phím nhưng lại không biết là có mảng nào mà phần tử là __Class__ không? Và để giải quyết vấn đề đó, mình đã hỏi người bạn của mình, __ChatGPT__. Sau khi có được câu trả lời thì mình đã hiểu và biết thêm một phần kiến thức.
+   - Thứ hai, có quá nhiều thuộc tính để lựa chọn và không biết nên thêm nên bỏ cái nào và cách đặt tên của nó như thế nào cho hợp lý.
+   - Và thứ ba là việc các yêu cầu của bài tập lần này như về cách đặt tên theo __Camel Case__, hay đầy đủ một vài thuộc tính và phương thức bắt buộc cũng như các input một cách gọn gàng khi các phần tử là một class.
+- Mọi khó khăn gặp phải mình đều trao đổi với __ChatGPT__ kết hợp một vài thông tin tìm kiếm trên mạng xã hội.  
 - Thách thức lớn nhất trong bài tập lần này theo mình cảm thấy đó là việc chọn lọc thông tin nào cần thiết để chương trình vừa **thực tế** vừa **dễ triển khai**. Ngoài ra, mình cũng phải xử lý một vài tình huống ngoại lệ mà đôi khi bản thân ta không để ý đến, ví dụ tốc độ tối đa không thể âm nên cần kiểm tra trong setter.  
 
 # Nhận xét
