@@ -11,7 +11,7 @@ class Vehicle {
         string licensePlate; //biển số xe để phân biệt các xe cùng loại với nhau. Ví dụ cách nhập biển số xe: 51C-12345, 59A-67890,...
         int monthsInCompany; //thời gian xe hoạt động trong công ty tính theo tháng
         string managerName;
-        bool maintenanceStatus; //trạng thái bảo trì: false = chưa đến thời gian bảo trì, vẫn sử dụng được; true = hiện đang trong thời gian bảo trì, không thể sử dụng xe này.
+        bool maintenanceStatus; //trạng thái bảo trì: false = không bảo trì, sử dụng được; true = đang bảo trì, không thể sử dụng xe này.
         string fuelType; //loại nhiên liệu sử dụng cho xe (xăng, dầu, điện)
     public:
         Vehicle() {}; //constructor mặc định, thêm vào để tránh lỗi khi khai báo mảng đối tượng
@@ -72,6 +72,7 @@ class Vehicle {
             cout << " co bien so " << licensePlate;
             cout << " thuoc hang " << brand;
             cout << ", san xuat nam " << year;
+            cout << ", su dung loai nhien lieu " << fuelType;
             cout << ", toc do toi da " << maxSpeed << " km/h";
             cout << ", co mau " << color;
             cout << ", hoat dong trong cong ty duoc " << monthsInCompany << " thang";
